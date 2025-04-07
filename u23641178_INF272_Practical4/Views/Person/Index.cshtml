@@ -1,0 +1,89 @@
+﻿@model IEnumerable<u23641178_INF272_Practical4.Models.Person>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>List of people</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<body class="index-page">
+
+    <table class="table table-bordered">
+        <tr style="background-color: darkgreen; color: white; ">
+            <th width="16%">
+                @Html.DisplayNameFor(model => model.Student_No)
+            </th>
+            <th width="16%">
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th width="16%">
+                @Html.DisplayNameFor(model => model.LastName)
+            <th class="text-center" width="16%">
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th class="text-center" width="16%">
+                @Html.DisplayNameFor(model => model.MyLink)
+            </th>
+            <th class="text-center" width="16%">
+                @Html.DisplayNameFor(model => model.Delete)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td width="16%">
+                    @Html.DisplayFor(modelItem => item.Student_No)
+                </td>
+                <td width="16%">
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td width="16%">
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td class="text-center" width="16%">
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td class="text-center" width="16%">
+                    <a href="@Html.DisplayFor(modelItem => item.MyLink)" class="btn btn-success">LINK</a>
+                </td>
+                <td class="text-center" width="16%">
+                    <button type="button" class="btn btn-success delete-btn">Delete</button>
+                </td>
+            </tr>
+        }
+
+    </table>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Attach event listener to all delete buttons
+            const deleteButtons = document.querySelectorAll(".delete-btn");
+
+            deleteButtons.forEach(button => {
+                button.addEventListener("click", function () {
+                    const row = this.closest("tr");
+                    row.remove(); // Remove the row from the table
+                });
+            });
+
+            const table = document.querySelector("table");
+            const rows = table.rows;
+            console.log(rows);
+            for (let i = 0; i < rows.length; i++) {
+                if (rows[i].cells[1].textContent.trim()[0] === "M") {
+                    rows[i].classList.add("text-danger");
+                }
+            }
+        });
+    </script>
+
+
+
+
+</body>

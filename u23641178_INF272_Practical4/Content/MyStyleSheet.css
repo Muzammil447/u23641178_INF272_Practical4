@@ -1,0 +1,7 @@
+﻿.column{
+    border: solid grey 1px;
+    margin: 5px;
+
+.active {
+    background-color: darkgrey;
+}
